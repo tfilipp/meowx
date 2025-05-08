@@ -1,0 +1,231 @@
+@font-face {
+    font-family: 'Cy Grotesk Grand';
+    src: url('CyGrotesk-GrandMedium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cy Grotesk Key';
+    src: url('CyGrotesk-KeyRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro';
+    src: url(SF-Pro.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    --main-1: #191919;
+    --main-2: #ffffff;
+    --secondary-1: rgba(255, 255, 255, 0.05);
+    --secondary-2: rgba(255, 255, 255, 0.6);
+    --secondary-3: rgba(255, 255, 255, 0.8);
+    --hover: rgba(255, 255, 255, 0.1);
+
+    --theme-bg: var(--main-1);
+    --theme-txt: var(--main-2);
+}
+
+body {
+    background: var(--theme-bg);
+}
+
+.gm {
+    font-family: 'CyGrotesk Grand Medium', sans-serif;
+}
+
+.kr {
+    font-family: 'CyGrotesk Key Regular', sans-serif;
+}
+
+.header-origin {
+    position: absolute;
+    height: 90px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+}
+
+/* Left section */
+.left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 16px;
+    position: fixed;
+    left: 32px;
+    top: 24px;
+    background: var(--secondary-1);
+    border-radius: 52px;
+    transition: all 0.3s ease;
+    height: 42px;
+    overflow: hidden;
+}
+
+.logo {
+    font-family: 'Cy Grotesk Grand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--main-2);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    white-space: nowrap;
+}
+
+.doc-title {
+    font-family: 'Cy Grotesk Key';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 21px;
+    color: var(--secondary-2);
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    opacity: 1;
+    width: fit-content;
+    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 0.3s ease, 
+                width 0.3s ease,
+                opacity 0.3s ease,
+                margin-left 0.3s ease;
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.left.scrolled .doc-title {
+    opacity: 0;
+    width: 0;
+    margin-left: 0;
+    padding: 0;
+    transform: scaleX(0);
+}
+
+/* Right section */
+.right {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    position: fixed;
+    right: 32px;
+    top: 21px;
+    background: var(--secondary-1);
+    border-radius: 52px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.right:hover {
+    background: var(--hover);
+}
+
+.settings {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    flex-grow: 0;
+    transition: all .6s ease-in-out;
+}
+
+/* Settings menu */
+.settings-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 16px);
+    right: 0;
+    background: var(--secondary-1);
+    border-radius: 12px;
+    padding: 8px;
+    min-width: 220px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.settings-menu.active {
+    display: block;
+    opacity: 1;
+    animation: menuAppear 0.3s ease forwards;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.menu-item:hover {
+    background: var(--hover);
+    transform: scale(1.02);
+}
+
+.menu-item:active {
+    transform: scale(.90);
+}
+
+.menu-item img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.menu-item:hover img {
+    opacity: 1;
+}
+
+.menu-item span {
+    color: var(--secondary-3);
+    font-family: 'Cy Grotesk Key';
+    font-size: 14px;
+    font-weight: 200;
+    transition: color 0.2s ease;
+}
+
+.menu-item:hover span {
+    color: var(--main-2);
+}
+
+/* Content section */
+.content {
+    position: absolute;
+    top: 132px;
+    left: 320px;
+    right: 320px;
+}
+
+.content p {
+    color: var(--theme-txt);
+    font-family: 'SF Pro';
+}
+
+/* Animations */
+@keyframes menuAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
